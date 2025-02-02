@@ -17,7 +17,10 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require("lspconfig").vtsls.setup({})
+      local lsp = require"lspconfig"
+      lsp['vtsls'].setup({})
+      lsp['html'].setup({})
+      lsp['emmet_language_server'].setup({})
     end,
   },
 
@@ -104,11 +107,6 @@ return {
       },
     },
     config = function()
-      -- require("dap-vscode-js").setup({
-      --   debugger_path = vim.fn.stdpath("data") .. "/lazy/vscode-js-debug",
-      --   adapters = { 'pwa-node' },
-      -- })
-
       local dap = require("dap")
 
       dap.adapters["pwa-node"] = {
@@ -125,15 +123,6 @@ return {
       }
 
       dap.configurations["javascript"] = {
-        {
-          type = "pwa-node",
-          request = "launch",
-          name = "Launch file",
-          program = "${file}",
-          cwd = "${workspaceFolder}",
-        },
-      }
-      dap.configurations["javascriptreact"] = {
         {
           type = "pwa-node",
           request = "launch",
@@ -163,13 +152,22 @@ return {
             "${workspaceFolder}/**",
             "!**/node_modules/**",
           },
+          attachSimplePort = 9230,
         },
       }
       dap.configurations["typescriptreact"] = {
         {
           type = 'pwa-node',
-          request = 'attach',
-          name = '[deno] dev attach',
+          request = 'launch',
+          name = 'dev [bun]',
+          cwd = vim.fn.getcwd(),
+          runtimeExecutable = 'bun',
+          args = {
+            'dev',
+          },
+					env = {
+						NODE_OPTIONS = '--inspect-brk',
+					},
           sourceMaps = true,
           protocol = 'inspector',
           skipFiles = {
@@ -185,7 +183,31 @@ return {
         {
           type = 'pwa-node',
           request = 'launch',
-          name = '[deno] dev',
+          name = 'dev [bun] (NextJs port 9230)',
+          cwd = vim.fn.getcwd(),
+          runtimeExecutable = 'bun',
+          args = {
+            'dev',
+          },
+					env = {
+						NODE_OPTIONS = '--inspect-brk',
+					},
+          sourceMaps = true,
+          protocol = 'inspector',
+          skipFiles = {
+            '<node_internals>/**',
+            'node_modules/**',
+          },
+          resolveSourceMapLocations = {
+            "${workspaceFolder}/**",
+            "!**/node_modules/**",
+          },
+          attachSimplePort = 9230,
+        },
+        {
+          type = 'pwa-node',
+          request = 'launch',
+          name = 'dev [deno]',
           cwd = vim.fn.getcwd(),
           runtimeExecutable = 'deno',
           args = {
@@ -208,7 +230,7 @@ return {
         {
           type = 'pwa-node',
           request = 'launch',
-          name = '[npm] dev',
+          name = 'dev [npm]',
           cwd = vim.fn.getcwd(),
           runtimeExecutable = 'npm',
           args = {
@@ -285,6 +307,17 @@ return {
     },
     config = function()
       require("dapui").setup()
+    end,
+  },
+
+  -- prettier
+  {
+    "MunifTanjim/prettier.nvim",
+    dependencies = {
+      "jose-elias-alvarez/null-ls.nvim",
+    },
+    config = function()
+      require("prettier").setup()
     end,
   },
 }
