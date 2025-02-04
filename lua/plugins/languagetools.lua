@@ -131,124 +131,83 @@ return {
           cwd = "${workspaceFolder}",
         },
       }
+
+      local makeTsTask = function(name, port, env, exe, args)
+        local useEnv = env or {}
+        return {
+          type = 'pwa-node',
+          request = 'launch',
+          name = name,
+          cwd = vim.fn.getcwd(),
+          runtimeExecutable = exe,
+          args = args,
+          env = useEnv,
+          sourceMaps = true,
+          protocol = 'inspector',
+          skipFiles = {
+            '<node_internals>/**',
+            'node_modules/**',
+          },
+          resolveSourceMapLocations = {
+            "${workspaceFolder}/**",
+            "!**/node_modules/**",
+          },
+          attachSimplePort = port,
+        }
+      end
+
+      local bunTaskDev = makeTsTask(
+        'dev [bun]',
+        9229,
+        {NODE_OPTIONS = '--inspect-brk'},
+        'bun',
+        {'dev'}
+      )
+
+      local bunWithNextTaskForDev = makeTsTask(
+        'dev [bun w/Next]',
+        9230,
+        {NODE_OPTIONS = '--inspect-brk'},
+        'bun',
+        {'dev'}
+      )
+
+      local denoTaskDev = makeTsTask(
+        'dev [deno]',
+        9229,
+        nil,
+        'deno',
+        {'run', '--inspect-brk', 'dev'}
+      )
+
+      local npmTaskDev = makeTsTask(
+        'dev [npm]',
+        9229,
+        nil,
+        'npm',
+        {'run', '--inspect', 'dev'}
+      )
+
+      local launchTsFile = makeTsTask(
+        'Debug this file (ts-node)',
+        9229,
+        nil,
+        'ts-node',
+        {'${file}'}
+      )
+
       -- NOTE: for this to work, the system must have ts-node installed globally
       dap.configurations["typescript"] = {
-        {
-          type = 'pwa-node',
-          request = 'launch',
-          name = 'Launch Current File',
-          cwd = vim.fn.getcwd(),
-          runtimeExecutable = 'ts-node',
-          args = {
-            '${file}',
-          },
-          sourceMaps = true,
-          protocol = 'inspector',
-          skipFiles = {
-            '<node_internals>/**',
-            'node_modules/**',
-          },
-          resolveSourceMapLocations = {
-            "${workspaceFolder}/**",
-            "!**/node_modules/**",
-          },
-          attachSimplePort = 9230,
-        },
+        launchTsFile,
+        bunTaskDev,
+        denoTaskDev,
+        npmTaskDev,
       }
       dap.configurations["typescriptreact"] = {
-        {
-          type = 'pwa-node',
-          request = 'launch',
-          name = 'dev [bun]',
-          cwd = vim.fn.getcwd(),
-          runtimeExecutable = 'bun',
-          args = {
-            'dev',
-          },
-					env = {
-						NODE_OPTIONS = '--inspect-brk',
-					},
-          sourceMaps = true,
-          protocol = 'inspector',
-          skipFiles = {
-            '<node_internals>/**',
-            'node_modules/**',
-          },
-          resolveSourceMapLocations = {
-            "${workspaceFolder}/**",
-            "!**/node_modules/**",
-          },
-          attachSimplePort = 9229,
-        },
-        {
-          type = 'pwa-node',
-          request = 'launch',
-          name = 'dev [bun] (NextJs port 9230)',
-          cwd = vim.fn.getcwd(),
-          runtimeExecutable = 'bun',
-          args = {
-            'dev',
-          },
-					env = {
-						NODE_OPTIONS = '--inspect-brk',
-					},
-          sourceMaps = true,
-          protocol = 'inspector',
-          skipFiles = {
-            '<node_internals>/**',
-            'node_modules/**',
-          },
-          resolveSourceMapLocations = {
-            "${workspaceFolder}/**",
-            "!**/node_modules/**",
-          },
-          attachSimplePort = 9230,
-        },
-        {
-          type = 'pwa-node',
-          request = 'launch',
-          name = 'dev [deno]',
-          cwd = vim.fn.getcwd(),
-          runtimeExecutable = 'deno',
-          args = {
-            'run',
-            '--inspect-brk',
-            'dev',
-          },
-          sourceMaps = true,
-          protocol = 'inspector',
-          skipFiles = {
-            '<node_internals>/**',
-            'node_modules/**',
-          },
-          resolveSourceMapLocations = {
-            "${workspaceFolder}/**",
-            "!**/node_modules/**",
-          },
-          attachSimplePort = 9229,
-        },
-        {
-          type = 'pwa-node',
-          request = 'launch',
-          name = 'dev [npm]',
-          cwd = vim.fn.getcwd(),
-          runtimeExecutable = 'npm',
-          args = {
-            'run',
-            'dev',
-          },
-          sourceMaps = true,
-          protocol = 'inspector',
-          skipFiles = {
-            '<node_internals>/**',
-            'node_modules/**',
-          },
-          resolveSourceMapLocations = {
-            "${workspaceFolder}/**",
-            "!**/node_modules/**",
-          },
-          attachSimplePort = 9229,
-        },
+        bunTaskDev,
+        bunWithNextTaskForDev,
+        denoTaskDev,
+        npmTaskDev,
       }
 
       dap.adapters["delve"] = function(callback, config)
