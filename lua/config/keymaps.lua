@@ -49,6 +49,7 @@ map('n', '<Leader>f', ':Prettier<CR>', { desc = 'Format (prettier)' })
 -- DAP-Only bindings: comment these out if the DAP-UI bindings above are enabled, and vice versa
 
 map('n', '<Leader>dc', function() require('dap').continue() end, { desc = "Start/cont" })
+map('n', '<Leader>dx', function() require('dap').terminate() end, { desc = "Terminate" })
 map('n', '<Leader>do', function() require('dap').step_over() end, { desc = "Over  " })
 map('n', '<Leader>di', function() require('dap').step_into() end, { desc = "In 󰆹" })
 map('n', '<Leader>du', function() require('dap').step_out() end, { desc = "Out 󰆸" })
@@ -75,4 +76,14 @@ map('n', '<Leader>c', nil, { group = 'Config' })
 map('n', '<Leader>cl', ':colorscheme kanagawa-lotus<CR>', { desc = "kanagawa-lotus (theme)" })
 map('n', '<Leader>cw', ':colorscheme kanagawa-wave<CR>', { desc = "kanagawa-wave (theme)" })
 map('n', '<Leader>cd', ':colorscheme kanagawa-dragon<CR>', { desc = "kanagawa-dragon (theme)" })
+
+-- LaTeX authoring stuff
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {'tex'},
+  callback = function()
+    vim.schedule(function()
+      map('n', '<Leader>lv', ':VimtexCompile<CR>', { desc = '(latex) View in Skim' })
+    end)
+  end,
+})
 
