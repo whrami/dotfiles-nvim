@@ -180,6 +180,14 @@ return {
         {'run', '--inspect-brk', 'dev'}
       )
 
+      local denoWithNextTaskForDev = makeTsTask(
+        'dev [deno w/Next]',
+        9230,
+        {NODE_OPTIONS = '--inspect-brk'},
+        'deno',
+        {'run', 'dev'}
+      )
+
       local npmTaskDev = makeTsTask(
         'dev [npm]',
         9229,
@@ -207,6 +215,7 @@ return {
         bunTaskDev,
         bunWithNextTaskForDev,
         denoTaskDev,
+        denoWithNextTaskForDev,
         npmTaskDev,
       }
 
