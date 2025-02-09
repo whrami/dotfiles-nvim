@@ -70,3 +70,9 @@ map('n', '<Leader>ds', function()
 	widgets.centered_float(widgets.scopes)
 end, { desc = "Scopes" })
 
+-- quick access for the themes i use most
+map('n', '<Leader>c', nil, { group = 'Config' })
+map('n', '<Leader>cl', ':colorscheme kanagawa-lotus<CR>', { desc = "kanagawa-lotus (theme)" })
+map('n', '<Leader>cw', ':colorscheme kanagawa-wave<CR>', { desc = "kanagawa-wave (theme)" })
+map('n', '<Leader>cd', ':colorscheme kanagawa-dragon<CR>', { desc = "kanagawa-dragon (theme)" })
+

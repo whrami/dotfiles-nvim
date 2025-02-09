@@ -191,7 +191,7 @@ return {
       local launchTsFile = makeTsTask(
         'Debug this file (ts-node)',
         9229,
-        nil,
+        {NODE_OPTIONS = '--inspect-brk'},
         'ts-node',
         {'${file}'}
       )
