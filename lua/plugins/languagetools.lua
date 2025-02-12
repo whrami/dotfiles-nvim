@@ -142,6 +142,7 @@ return {
           runtimeExecutable = exe,
           args = args,
           env = useEnv,
+          envFile = '.env',
           sourceMaps = true,
           protocol = 'inspector',
           skipFiles = {
@@ -156,46 +157,6 @@ return {
         }
       end
 
-      local bunTaskDev = makeTsTask(
-        'dev [bun]',
-        9229,
-        {NODE_OPTIONS = '--inspect-brk'},
-        'bun',
-        {'dev'}
-      )
-
-      local bunWithNextTaskForDev = makeTsTask(
-        'dev [bun w/Next]',
-        9230,
-        {NODE_OPTIONS = '--inspect-brk'},
-        'bun',
-        {'dev'}
-      )
-
-      local denoTaskDev = makeTsTask(
-        'dev [deno]',
-        9229,
-        nil,
-        'deno',
-        {'run', '--inspect-brk', 'dev'}
-      )
-
-      local denoWithNextTaskForDev = makeTsTask(
-        'dev [deno w/Next]',
-        9230,
-        {NODE_OPTIONS = '--inspect-brk'},
-        'deno',
-        {'run', 'dev'}
-      )
-
-      local npmTaskDev = makeTsTask(
-        'dev [npm]',
-        9229,
-        nil,
-        'npm',
-        {'run', '--inspect', 'dev'}
-      )
-
       local launchTsFile = makeTsTask(
         'Debug this file (ts-node)',
         9229,
@@ -207,16 +168,8 @@ return {
       -- NOTE: for this to work, the system must have ts-node installed globally
       dap.configurations["typescript"] = {
         launchTsFile,
-        bunTaskDev,
-        denoTaskDev,
-        npmTaskDev,
       }
       dap.configurations["typescriptreact"] = {
-        bunTaskDev,
-        bunWithNextTaskForDev,
-        denoTaskDev,
-        denoWithNextTaskForDev,
-        npmTaskDev,
       }
 
       dap.adapters["delve"] = function(callback, config)
