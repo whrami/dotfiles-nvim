@@ -165,11 +165,41 @@ return {
         {'${file}'}
       )
 
+      local debugNextApp = {
+        type = 'pwa-node',
+        request = 'launch',
+        name = 'Debug Next.js app',
+        cwd = vim.fn.getcwd(),
+        program = '${workspaceFolder}/node_modules/.bin/next',
+        runtimeArgs = { '--inspect' },
+        args = {
+          'dev',
+          '--turbopack',
+        },
+        env = {
+          NODE_OPTIONS = '--inspect-brk',
+        },
+        envFile = '.env',
+        sourceMaps = true,
+        protocol = 'inspector',
+        skipFiles = {
+          '<node_internals>/**',
+          'node_modules/**',
+        },
+        resolveSourceMapLocations = {
+          "${workspaceFolder}/**",
+          "!**/node_modules/**",
+        },
+        attachSimplePort = 9230,
+      }
+
       -- NOTE: for this to work, the system must have ts-node installed globally
       dap.configurations["typescript"] = {
         launchTsFile,
+        debugNextApp,
       }
       dap.configurations["typescriptreact"] = {
+        debugNextApp,
       }
 
       dap.adapters["delve"] = function(callback, config)
