@@ -8,6 +8,9 @@ return {
     },
     ft = "hurl",
     opts = {
+      env_file = {
+        '.hurl.env',
+      },
       -- Show debugging info
       debug = false,
       -- Show notification on run
