@@ -71,11 +71,20 @@ map('n', '<Leader>ds', function()
 	widgets.centered_float(widgets.scopes)
 end, { desc = "Scopes" })
 
+-- this is a handy way to apply "skin" files, my own term for outputs from the vscode theme converter, djanho.
+-- This converter can take any vscode .json theme, and produce a .vim Vimscript file that applies the theme in Neovim.
+-- see https://github.com/viniciusmuller/djanho.git
+function apply_skinfile(name)
+  vim.cmd('source ' .. vim.fn.stdpath('config') .. '/lua/skins/' .. name .. '.vim')
+end
+
 -- quick access for the themes i use most
 map('n', '<Leader>c', nil, { group = 'Config' })
 map('n', '<Leader>cl', ':colorscheme kanagawa-lotus<CR>', { desc = "kanagawa-lotus (theme)" })
 map('n', '<Leader>cw', ':colorscheme kanagawa-wave<CR>', { desc = "kanagawa-wave (theme)" })
 map('n', '<Leader>cd', ':colorscheme kanagawa-dragon<CR>', { desc = "kanagawa-dragon (theme)" })
+map('n', '<Leader>cf', ':colorscheme falcon<CR>', { desc = "falcon (theme)" })
+map('n', '<Leader>cp', function() apply_skinfile('pascal') end, { desc = "pascal (theme)" })
 
 -- LaTeX authoring stuff
 vim.api.nvim_create_autocmd("FileType", {
