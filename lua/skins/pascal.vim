@@ -35,7 +35,7 @@ call s:highlight('StatusLine', s:Color7, s:Color6, '')
 call s:highlight('WildMenu', s:Color8, s:Color2, '')
 call s:highlight('Pmenu', s:Color8, s:Color2, '')
 call s:highlight('PmenuSel', s:Color2, s:Color9, '')
-call s:highlight('PmenuThumb', s:Color8, s:Color2, '')
+call s:highlight('PmenuThumb', '#c09000', '', '')
 call s:highlight('Normal', s:Color8, s:Color2, '')
 call s:highlight('Visual', s:Color10, '', '')
 call s:highlight('CursorLine', s:Color10, '', '')
@@ -79,3 +79,7 @@ highlight! link TSRepeat Repeat
 highlight! link TSParameter Constant
 highlight! link NonText Comment
 highlight! link TSConstant Constant
+
+" added by me -- orange line as the debug current line cursor
+sign define DapStopped linehl=PmenuThumb
+

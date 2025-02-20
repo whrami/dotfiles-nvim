@@ -19,6 +19,7 @@ end
 -- fuzzy find by filename
 map('n', '<Leader><Space>', ':FzfLua files<CR>')
 map('n', '<Leader>/', ':FzfLua live_grep<CR>')
+map('n', '<Leader>.', ':FzfLua resume<CR>')
 
 -- neotree
 map('n', '<Leader>e', ':Neotree toggle<CR>')
@@ -95,4 +96,7 @@ vim.api.nvim_create_autocmd("FileType", {
     end)
   end,
 })
+
+-- codeium (part of C 'config' group)
+map('n', '<Leader>ca', ':CodeiumToggle<CR>', { desc = "Toggle Codeium" })
 
