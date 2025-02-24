@@ -35,6 +35,7 @@ return {
         lua_ls = {},
         vtsls = {},
         gopls = {},
+        pyright = {},
       },
     },
     config = function(_, opts)

@@ -2,7 +2,8 @@ return {
   {
     "rebelot/kanagawa.nvim",
     config = function()
-      vim.cmd[[colorscheme kanagawa-dragon]]
+      -- maybe no theme as a default? and we pick it deliberately
+      -- vim.cmd[[colorscheme kanagawa-dragon]]
     end,
   },
   { "fenetikm/falcon" },

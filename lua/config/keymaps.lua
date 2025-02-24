@@ -87,6 +87,24 @@ map('n', '<Leader>cd', ':colorscheme kanagawa-dragon<CR>', { desc = "kanagawa-dr
 map('n', '<Leader>cf', ':colorscheme falcon<CR>', { desc = "falcon (theme)" })
 map('n', '<Leader>cp', function() apply_skinfile('pascal') end, { desc = "pascal (theme)" })
 
+function get_skin_names()
+  local glob_str = vim.fn.glob(vim.fn.stdpath("config") .. "/lua/skins/*.lua")
+  local file_table = {}
+  for line in string.gmatch(glob_str, "[^\n]+") do
+    filepart = string.match(line, ".*/([^/]+).lua$")
+    table.insert(file_table, filepart)
+  end
+  return file_table
+end
+
+map('n', '<Leader>cs', function()
+  vim.ui.select(get_skin_names(), { prompt = "Choose one" }, function(choice)
+    if choice then
+      vim.cmd("luafile " .. vim.fn.stdpath("config") .. "/lua/skins/" .. choice .. '.lua')
+    end
+  end)
+end, { desc = "Choose a skin" })
+
 -- LaTeX authoring stuff
 vim.api.nvim_create_autocmd("FileType", {
   pattern = {'tex'},
@@ -99,4 +117,12 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- codeium (part of C 'config' group)
 map('n', '<Leader>ca', ':CodeiumToggle<CR>', { desc = "Toggle Codeium" })
+
+
+-- little bit of vscode-like stuff; be able to run an npm command
+function run_npm_command()
+  local taskname = vim.fn.input('Run NPM task: ')
+  vim.cmd('!npm run ' .. taskname)
+end
+map('n', '<Leader>n', run_npm_command, { desc = "npm run ___" })
 
