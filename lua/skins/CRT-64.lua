@@ -54,6 +54,7 @@ highlight('Special', nil, Color2, nil)
 highlight('TSCharacter', nil, Color0, nil)
 highlight('Delimiter', nil, Color4, nil)
 highlight('@variable', nil, Color4, nil)
+highlight('PreProc', nil, Color4, nil)
 
 -- finding some last little stragglers
 highlight('Directory', nil, Color4, nil)

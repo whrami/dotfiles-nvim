@@ -111,3 +111,7 @@ function run_npm_command()
 end
 map('n', '<Leader>n', run_npm_command, { desc = "npm run ___" })
 
+
+-- rando usability -- 
+map('n', '<Leader><BS>', ':Noice last<CR>', { desc = 'Review last message' })
+
