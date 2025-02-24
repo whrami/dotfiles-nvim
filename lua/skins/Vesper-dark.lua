@@ -58,8 +58,9 @@ highlight('Special', nil, Color0, nil)
 
 -- finding some last little stragglers
 highlight('Directory', nil, Color2, nil)
-highlight('DiagnosticHint', nil, Color9, nil)
-highlight('DiagnosticWarn', nil, Color9, nil)
+highlight('DiagnosticHint', nil, Color1, nil)
+highlight('DiagnosticWarn', nil, Color3, nil)
+highlight('DiagnosticError', nil, Color2, nil)
 
 link('TSTagDelimiter', 'Type')
 link('TSFunction', 'Function')

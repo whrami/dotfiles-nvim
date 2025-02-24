@@ -15,12 +15,15 @@ end
 
 local Color0 = '#8f1a1a'
 local Color3 = '#111111'
-local Color1 = '#401414'
+local Color1 = '#481414'
 local Color2 = '#ff2222'
 local Color4 = '#ff7766'
+local Color5 = '#512828'
 
-highlight('Comment', nil, Color0, nil)
+highlight('Comment', nil, Color5, nil)
 highlight('Keyword', nil, Color0, nil)
+highlight('Statement', nil, Color0, nil)
+highlight('Constant', nil, Color1, nil)
 highlight('Type', nil, Color0, nil)
 highlight('Error', nil, Color0, nil)
 highlight('StatusLine', Color2, Color1, nil)
@@ -55,8 +58,9 @@ highlight('@variable', nil, Color4, nil)
 
 -- finding some last little stragglers
 highlight('Directory', nil, Color4, nil)
-highlight('DiagnosticHint', nil, Color4, nil)
-highlight('DiagnosticWarn', nil, Color4, nil)
+highlight('DiagnosticHint', nil, Color2, nil)
+highlight('DiagnosticWarn', nil, Color0, nil)
+highlight('DiagnosticError', nil, Color4, nil)
 
 link('TSFloat', 'Number')
 link('Whitespace', 'Comment')

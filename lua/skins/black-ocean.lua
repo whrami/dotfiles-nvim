@@ -25,6 +25,7 @@ local Color6 = '#dfdfdf'
 local Color4 = '#007aae'
 local Color1 = '#7ebea0'
 
+
 highlight('Comment', nil, Color0, nil)
 highlight('String', nil, Color1, nil)
 highlight('Number', nil, Color2, nil)
@@ -56,6 +57,10 @@ highlight('Operator', nil, Color0, nil)
 highlight('Special', nil, Color9, nil)
 highlight('Delimiter', nil, Color6, nil)
 highlight('@variable', nil, Color3, nil)
+
+highlight('DiagnosticHint', nil, Color1, nil)
+highlight('DiagnosticWarn', nil, Color3, nil)
+highlight('DiagnosticError', nil, Color4, nil)
 
 link('TSRepeat', 'Repeat')
 link('Conditional', 'Operator')

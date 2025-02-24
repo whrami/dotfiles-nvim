@@ -52,7 +52,8 @@ highlight('Special', nil, Color8, nil)
 -- finding some last little stragglers
 highlight('Directory', nil, Color4, nil)
 highlight('DiagnosticHint', nil, Color7, nil)
-highlight('DiagnosticWarn', nil, Color7, nil)
+highlight('DiagnosticWarn', nil, Color5, nil)
+highlight('DiagnosticError', nil, Color2, nil)
 
 link('TSPunctSpecial', 'TSPunctDelimiter')
 link('TSConditional', 'Conditional')

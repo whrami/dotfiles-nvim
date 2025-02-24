@@ -55,8 +55,9 @@ highlight('@variable', nil, Color4, nil)
 
 -- finding some last little stragglers
 highlight('Directory', nil, Color2, nil)
-highlight('DiagnosticHint', nil, Color3, nil)
+highlight('DiagnosticHint', nil, Color1, nil)
 highlight('DiagnosticWarn', nil, Color3, nil)
+highlight('DiagnosticError', nil, Color2, nil)
 
 link('TSType', 'Type')
 link('Folded', 'Comment')

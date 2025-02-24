@@ -67,8 +67,10 @@ highlight('@variable', nil, Color8, nil)
 
 -- finding some last little stragglers
 highlight('Directory', nil, Color4, nil)
-highlight('DiagnosticHint', nil, Color5, nil)
-highlight('DiagnosticWarn', nil, Color5, nil)
+
+highlight('DiagnosticHint', nil, Color4, nil)
+highlight('DiagnosticWarn', nil, Color3, nil)
+highlight('DiagnosticError', nil, Color0, nil)
 
 link('Macro', 'Function')
 link('TSFuncMacro', 'Macro')

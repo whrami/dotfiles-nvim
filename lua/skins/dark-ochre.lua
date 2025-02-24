@@ -63,8 +63,10 @@ highlight('TSPunctDelimiter', nil, Color11, nil)
 
 -- finding some last little stragglers
 highlight('Directory', nil, Color1, nil)
-highlight('DiagnosticHint', nil, Color5, nil)
-highlight('DiagnosticWarn', nil, Color5, nil)
+
+highlight('DiagnosticHint', nil, Color4, nil)
+highlight('DiagnosticWarn', nil, Color2, nil)
+highlight('DiagnosticError', nil, Color3, nil)
 
 link('TSNumber', 'Number')
 link('Whitespace', 'Comment')

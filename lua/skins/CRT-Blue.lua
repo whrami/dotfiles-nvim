@@ -13,20 +13,17 @@ local link = function(target, group)
     vim.api.nvim_command('highlight! link ' .. target .. ' '.. group)
 end
 
--- original
--- local Color2 = '#40300d'
--- local Color3 = '#111111'
--- local Color1 = '#ffb000'
--- local Color0 = '#8f6507'
-
-local Color2 = '#60401d'
+local Color2 = '#1a3350'
+local Color1 = '#0099ff'
+local Color0 = '#07598f'
 local Color3 = '#111111'
-local Color1 = '#ffb000'
-local Color0 = '#8f6507'
-local Color4 = '#ffd040'
+local Color4 = '#60c9ff'
+local Color5 = '#304860'
 
-highlight('Comment', nil, Color0, nil)
+highlight('Comment', nil, Color5, nil)
 highlight('Keyword', nil, Color0, nil)
+highlight('Statement', nil, Color0, nil)
+highlight('Constant', nil, Color1, nil)
 highlight('Type', nil, Color0, nil)
 highlight('Error', nil, Color0, nil)
 highlight('StatusLine', Color1, Color2, nil)
@@ -61,41 +58,41 @@ highlight('@variable', nil, Color4, nil)
 
 -- finding some last little stragglers
 highlight('Directory', nil, Color4, nil)
-highlight('DiagnosticHint', nil, Color4, nil)
-highlight('DiagnosticWarn', nil, Color4, nil)
+highlight('DiagnosticHint', nil, Color2, nil)
+highlight('DiagnosticWarn', nil, Color0, nil)
+highlight('DiagnosticError', nil, Color4, nil)
 
-link('TSProperty', 'TSField')
-link('Macro', 'Function')
-link('Folded', 'Comment')
-link('Conditional', 'Operator')
-link('NonText', 'Comment')
-link('TSParameterReference', 'TSParameter')
-link('TSRepeat', 'Repeat')
-link('TSField', 'Constant')
-link('Operator', 'Keyword')
-link('TSString', 'String')
-link('TSPunctBracket', 'MyTag')
-link('TSFuncMacro', 'Macro')
-link('TelescopeNormal', 'Normal')
-link('TSOperator', 'Operator')
-link('TSType', 'Type')
-link('TSConditional', 'Conditional')
-link('TSPunctSpecial', 'TSPunctDelimiter')
-link('TSKeyword', 'Keyword')
-link('TSComment', 'Comment')
-link('TSTag', 'MyTag')
-link('Whitespace', 'Comment')
-link('TSNumber', 'Number')
-link('TSTagDelimiter', 'Type')
-link('TSConstBuiltin', 'TSVariableBuiltin')
-link('Repeat', 'Conditional')
 link('TSFloat', 'Number')
-link('TSLabel', 'Type')
-link('TSConstant', 'Constant')
-link('TSNamespace', 'TSType')
+link('TSKeyword', 'Keyword')
+link('Whitespace', 'Comment')
+link('TSField', 'Constant')
+link('TSConstBuiltin', 'TSVariableBuiltin')
+link('TSTagDelimiter', 'Type')
+link('Macro', 'Function')
+link('TSPunctBracket', 'MyTag')
+link('NonText', 'Comment')
+link('TSConditional', 'Conditional')
+link('Repeat', 'Conditional')
+link('Operator', 'Keyword')
+link('TSOperator', 'Operator')
+link('Folded', 'Comment')
 link('TSFunction', 'Function')
+link('TSRepeat', 'Repeat')
+link('TSNumber', 'Number')
+link('TelescopeNormal', 'Normal')
 link('CursorLineNr', 'Identifier')
+link('TSComment', 'Comment')
+link('TSProperty', 'TSField')
+link('TSTag', 'MyTag')
+link('TSPunctSpecial', 'TSPunctDelimiter')
+link('Conditional', 'Operator')
+link('TSParameterReference', 'TSParameter')
+link('TSString', 'String')
+link('TSLabel', 'Type')
 link('TSParameter', 'Constant')
+link('TSConstant', 'Constant')
+link('TSType', 'Type')
+link('TSFuncMacro', 'Macro')
+link('TSNamespace', 'TSType')
 
 vim.fn.sign_define('DapStopped', { linehl = "PmenuThumb" })
-

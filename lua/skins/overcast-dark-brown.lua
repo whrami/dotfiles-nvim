@@ -62,7 +62,8 @@ highlight('Special', nil, Color2, nil)
 -- finding some last little stragglers
 highlight('Directory', nil, Color4, nil)
 highlight('DiagnosticHint', nil, Color4, nil)
-highlight('DiagnosticWarn', nil, Color4, nil)
+highlight('DiagnosticWarn', nil, Color1, nil)
+highlight('DiagnosticError', nil, Color2, nil)
 
 link('TSString', 'String')
 link('TSFunction', 'Function')

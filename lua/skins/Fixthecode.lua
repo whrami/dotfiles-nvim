@@ -56,6 +56,10 @@ highlight('Special', nil, Color2, nil)
 highlight('Delimiter', nil, Color7, nil)
 highlight('@variable', nil, Color1, nil)
 
+highlight('DiagnosticHint', nil, Color1, nil)
+highlight('DiagnosticWarn', nil, Color3, nil)
+highlight('DiagnosticError', nil, Color2, nil)
+
 link('Folded', 'Comment')
 link('TSFloat', 'Number')
 link('TSString', 'String')
