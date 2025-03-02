@@ -14,11 +14,11 @@ local link = function(target, group)
 end
 
 local Color2 = '#60401d'
-local Color3 = '#161311'
+local Color3 = '#131211'
 local Color1 = '#ffb000'
 local Color0 = '#8f6507'
 local Color4 = '#ffd040'
-local Color5 = '#40300d'
+local Color5 = '#58482d'
 
 highlight('Comment', nil, Color5, nil)
 highlight('Statement', nil, Color0, nil)
@@ -33,7 +33,8 @@ highlight('PmenuSel', Color1, Color2, nil)
 highlight('PmenuThumb', Color0, Color1, nil)
 highlight('DiffAdd', Color2, nil, nil)
 highlight('DiffDelete', Color2, nil, nil)
-highlight('Normal', Color3, Color1, nil)
+-- console dap window
+highlight('Normal', nil, Color1, nil)
 highlight('Visual', Color2, nil, nil)
 highlight('CursorLine', Color2, nil, nil)
 highlight('ColorColumn', Color2, nil, nil)

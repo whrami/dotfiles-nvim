@@ -16,7 +16,7 @@ end
 local Color2 = '#1a3350'
 local Color1 = '#0099ff'
 local Color0 = '#07598f'
-local Color3 = '#111111'
+local Color3 = '#11111a'
 local Color4 = '#60c9ff'
 local Color5 = '#304860'
 

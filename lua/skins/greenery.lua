@@ -26,6 +26,8 @@ local Color1 = '#83a06c'
 local Color2 = '#e1f3e7'
 local Color3 = '#adc586'
 
+local Red = '#ff0000'
+
 highlight('Number', nil, Color0, nil)
 highlight('TSCharacter', nil, Color0, nil)
 highlight('Keyword', nil, Color1, nil)
@@ -41,7 +43,8 @@ highlight('WildMenu', Color7, Color8, nil)
 highlight('Pmenu', Color7, Color8, nil)
 highlight('PmenuSel', Color8, Color7, nil)
 highlight('PmenuThumb', Color0, Color4, nil)
-highlight('Normal', Color7, Color8, nil)
+-- this ends up being the text in scratch buffers, dap windows, etc.
+highlight('Normal', nil, Color1, nil)
 highlight('Visual', Color9, nil, nil)
 highlight('CursorLine', Color9, nil, nil)
 highlight('ColorColumn', Color9, nil, nil)

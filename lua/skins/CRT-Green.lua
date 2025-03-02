@@ -16,9 +16,9 @@ end
 local Color0 = '#238f07'
 local Color3 = '#111611'
 local Color1 = '#33ff00'
-local Color2 = '#17400d'
+local Color2 = '#27501d'
 local Color4 = '#88ff44'
-local Color5 = '#335f07'
+local Color5 = '#436f17'
 
 highlight('Comment', nil, Color5, nil)
 highlight('Keyword', nil, Color0, nil)
