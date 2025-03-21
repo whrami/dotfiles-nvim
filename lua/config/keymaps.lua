@@ -26,6 +26,7 @@ map('n', '<Leader>e', ':Neotree toggle<CR>')
 
 -- a little vscode familiarity
 map('n', '<Leader>`', ':bel new +te<CR>a', { desc = 'Shell (split)' })
+map('n', '<Leader>~', ':bel tabnew +te<CR>a', { desc = 'Shell (new tab)' })
 
 -- prettier
 map('n', '<Leader>f', ':Prettier<CR>', { desc = 'Format (prettier)' })
