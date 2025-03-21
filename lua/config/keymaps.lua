@@ -81,11 +81,54 @@ function apply_skinfile(name)
 end
 
 -- quick access for the themes i use most
-map('n', '<Leader>c', nil, { group = 'Config' })
+map('n', '<Leader>c', nil, { group = 'Colors' })
 map('n', '<Leader>cl', ':colorscheme kanagawa-lotus<CR>', { desc = "kanagawa-lotus (theme)" })
 map('n', '<Leader>cw', ':colorscheme kanagawa-wave<CR>', { desc = "kanagawa-wave (theme)" })
 map('n', '<Leader>cd', ':colorscheme kanagawa-dragon<CR>', { desc = "kanagawa-dragon (theme)" })
 map('n', '<Leader>cf', ':colorscheme falcon<CR>', { desc = "falcon (theme)" })
+map('n', '<Leader>cv', ':colorscheme vscode<CR>:lua require("vscode").load("dark")<CR>', { desc = "VSCode-dark (theme)" })
+map('n', '<Leader>cV', ':colorscheme vscode<CR>:lua require("vscode").load("light")<CR>', { desc = "VSCode-light (theme)" })
+map('n', '<Leader>cp', ':colorscheme kanagawa-paper-ink<CR>', { desc = "Kanagawa-paper-ink (theme)" })
+map('n', '<Leader>cP', ':colorscheme kanagawa-paper-canvas<CR>', { desc = "Kanagawa-paper-canvas (theme)" })
+
+local ld_appren = function(mode, contrast)
+  vim.o.background = mode
+  if mode == "light" then
+    vim.g.apprentice_contrast_light = contrast
+  else
+    vim.g.apprentice_contrast_dark = contrast
+  end
+  require("lush")(require('apprentice').setup({
+    plugins = {
+      "cmp", -- nvim-cmp
+      "fzf",
+      "lsp",
+      "nvimtree",
+      "netrw",
+      "treesitter",
+    },
+    langs = {
+      "css",
+      "golang",
+      "html",
+      "java",
+      "js",
+      "json",
+      "jsx",
+      "lua",
+      "markdown",
+      "python",
+      "typescript",
+      "xml",
+    },
+  }))
+end
+
+map('n', '<Leader>ca', function() ld_appren('dark', 'medium') end, { desc = 'Apprentice dark' })
+map('n', '<Leader>cA', function() ld_appren('light', 'medium') end, { desc = 'Apprentice light' })
+
+map('n', '<Leader>cc', function() vim.o.background = "dark"; vim.cmd([[colorscheme chocolatier]]) end, { desc = "Chocolatier" })
+map('n', '<Leader>cC', function() vim.o.background = "light"; vim.cmd([[colorscheme chocolatier]]) end, { desc = "Chocolatier light" })
 
 map('n', '<Leader>cs', function()
   require('config/skins').do_skin_picker()
@@ -101,8 +144,9 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- codeium (part of C 'config' group)
-map('n', '<Leader>ca', ':CodeiumToggle<CR>', { desc = "Toggle Codeium" })
+-- codeium (part of = 'config' group)
+map('n', '<Leader>=', nil, { group = 'Change...' })
+map('n', '<Leader>=a', ':CodeiumToggle<CR>', { desc = "Toggle Codeium" })
 
 
 -- little bit of vscode-like stuff; be able to run an npm command
